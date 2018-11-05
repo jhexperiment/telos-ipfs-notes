@@ -143,6 +143,13 @@ Daemon is ready
 05:26:33.081  INFO    cluster:     - QmZyfn8RNHWaCWSq32HkHQXjjojNZykHquzBQ4xBCHTogU cluster.go:410
 05:26:33.081  INFO    cluster: ** IPFS Cluster is READY ** cluster.go:418
 ```
+#### Cluster Pin List
+```
+ipfs@ip-172-31-17-96:~$ ipfs-cluster-ctl pin ls
+QmSeefmLb94Yq3bmCmeqQmjacrQmve911xcBLRPQEsfobt |  | PIN | Repl. Factor: -1 | Allocations: [everywhere] | Recursive
+```
+
+http://testipfs3.telosvoyager.io:6888/api/v0/cat/QmSeefmLb94Yq3bmCmeqQmjacrQmve911xcBLRPQEsfobt
 
 #### Resources
  - https://docs.ipfs.io/introduction/usage/
