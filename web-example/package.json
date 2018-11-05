@@ -1,0 +1,15 @@
+{
+  "name": "ipfsapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ipfs-api": "^26.1.2",
+    "ipfs-cluster-api": "git+https://github.com/te0d/js-ipfs-cluster-api.git"
+  }
+}
