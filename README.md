@@ -1,5 +1,8 @@
 # Telos IPFS-Cluster
 
+### Prerequisites
+ - Ubuntu 18.04
+ - A user account dedicated to ipfs
 
 #### Update
 ```
@@ -85,3 +88,19 @@ ipfs-cluster-service init
     }
   }
 ```
+
+#### Resources
+ - https://docs.ipfs.io/introduction/usage/
+ - https://gateway.ipfs.io/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/quick-start
+ - https://cluster.ipfs.io/guides/quickstart/
+ - https://cluster.ipfs.io/documentation/
+ - https://cluster.ipfs.io/documentation/ipfs-cluster-ctl/
+ - https://cluster.ipfs.io/documentation/ipfs-cluster-service/
+ - https://cluster.ipfs.io/documentation/configuration/
+ - https://cluster.ipfs.io/documentation/security/
+ - https://cluster.ipfs.io/documentation/internals/
+ - https://cluster.ipfs.io/documentation/composite-clusters/
+ - https://github.com/ipfs/go-ipfs
+ - https://github.com/te0d/js-ipfs-cluster-api
+ - https://github.com/ipfs/js-ipfs-api
+ - https://docs.ipfs.io/reference/api/http/
