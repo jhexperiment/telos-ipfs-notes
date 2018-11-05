@@ -89,6 +89,54 @@ ipfs-cluster-service init
   }
 ```
 
+#### Start daemons
+```
+cd ~/scripts
+./ipfs_start.sh
+./cluster_start.sh
+```
+
+#### ipfs.log
+```
+Initializing daemon...
+Successfully raised file descriptor limit to 2048.
+Swarm listening on /ip4/127.0.0.1/tcp/4001
+Swarm listening on /ip4/172.31.22.109/tcp/4001
+Swarm listening on /ip6/::1/tcp/4001
+Swarm listening on /p2p-circuit/ipfs/QmP3nZKzhKjRWxn3AijEgTeEHyFFCs6iJobH7DQG5J2wD2
+Swarm announcing /ip4/127.0.0.1/tcp/4001
+Swarm announcing /ip4/172.31.22.109/tcp/4001
+Swarm announcing /ip6/::1/tcp/4001
+API server listening on /ip4/127.0.0.1/tcp/5001
+Gateway (readonly) server listening on /ip4/0.0.0.0/tcp/6888
+Daemon is ready
+```
+
+#### cluster.log
+```
+05:03:09.494  INFO    service: Initializing. For verbose output run with "-l debug". Please wait... daemon.go:43
+05:03:09.500  INFO    cluster: IPFS Cluster v0.7.0+git6f72ab2e67b46f245ed0e8144b065a321d6cb9a9 listening on:
+        /p2p-circuit/ipfs/QmNx5rEANRbePZ2s8393TzWWWAX7rUJTzg7ey4x9G5XkqB
+        /ip4/127.0.0.1/tcp/9096/ipfs/QmNx5rEANRbePZ2s8393TzWWWAX7rUJTzg7ey4x9G5XkqB
+        /ip4/172.31.22.109/tcp/9096/ipfs/QmNx5rEANRbePZ2s8393TzWWWAX7rUJTzg7ey4x9G5XkqB
+
+ cluster.go:107
+05:03:09.501  INFO    restapi: REST API (HTTP): /ip4/127.0.0.1/tcp/9094 restapi.go:414
+05:03:09.501  INFO    restapi: REST API (libp2p-http): ENABLED. Listening on:
+        /p2p-circuit/ipfs/QmNx5rEANRbePZ2s8393TzWWWAX7rUJTzg7ey4x9G5XkqB
+        /ip4/127.0.0.1/tcp/9096/ipfs/QmNx5rEANRbePZ2s8393TzWWWAX7rUJTzg7ey4x9G5XkqB
+        /ip4/172.31.22.109/tcp/9096/ipfs/QmNx5rEANRbePZ2s8393TzWWWAX7rUJTzg7ey4x9G5XkqB
+
+ restapi.go:431
+05:03:09.501  INFO  consensus: existing Raft state found! raft.InitPeerset will be ignored raft.go:203
+05:03:09.501  INFO   ipfshttp: IPFS Proxy: /ip4/0.0.0.0/tcp/9095 -> /ip4/127.0.0.1/tcp/5001 ipfshttp.go:221
+05:03:11.501  INFO  consensus: Current Raft Leader: QmTdeqpBPeq3UAAGnApeKHd9usv1Nu3DBU9kMrUZ5J3MpY raft.go:293
+05:03:11.501  INFO    cluster: Cluster Peers (without including ourselves): cluster.go:403
+05:03:11.501  INFO    cluster:     - QmTdeqpBPeq3UAAGnApeKHd9usv1Nu3DBU9kMrUZ5J3MpY cluster.go:410
+05:03:11.501  INFO    cluster:     - QmZyfn8RNHWaCWSq32HkHQXjjojNZykHquzBQ4xBCHTogU cluster.go:410
+05:03:11.501  INFO    cluster: ** IPFS Cluster is READY ** cluster.go:418
+```
+
 #### Resources
  - https://docs.ipfs.io/introduction/usage/
  - https://gateway.ipfs.io/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/quick-start
