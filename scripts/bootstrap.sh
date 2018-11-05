@@ -1,3 +1,3 @@
 #!/bin/bash
 DATADIR=`pwd`
-$DATADIR/cluster_start.sh --bootstrap /ip4/64.38.145.142/tcp/9096/ipfs/QmQyBB92MRi2iCyYenrvP6MC5pV5kkWCVwiXmcbAppNXEd
+$DATADIR/cluster_start.sh --bootstrap /ip4/54.183.202.2/tcp/9096/ipfs/QmTdeqpBPeq3UAAGnApeKHd9usv1Nu3DBU9kMrUZ5J3MpY
