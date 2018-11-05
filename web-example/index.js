@@ -35,7 +35,7 @@ ipfsCluster.pin.ls(function (err, pinset) {
   console.log(pinset)
 })
 
-ipfs.files.cat('QmQcHGQfmfoc72rNQvPKxB88nkt3ggYLrgsjw2jLJ7N36b', function (err, file) {
+ipfs.files.cat('QmSeefmLb94Yq3bmCmeqQmjacrQmve911xcBLRPQEsfobt', function (err, file) {
   if (err) {
     throw err
   }
