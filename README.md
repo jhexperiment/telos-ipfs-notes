@@ -1,4 +1,4 @@
-# Telos IPFS-Cluster
+# Telos IPFS
 
 ### Prerequisites
  - Ubuntu 18.04
