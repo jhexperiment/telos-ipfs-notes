@@ -92,6 +92,15 @@ Gateway (readonly) server listening on /ip4/0.0.0.0/tcp/8080
 Daemon is ready
 ```
 
+#### Clear IPFS pin set
+```
+ipfs pin rm QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG
+ipfs pin rm QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
+```
+
+#### Sync pin set
+`COMING SOON`
+
 #### Resources
  - https://docs.ipfs.io/introduction/usage/
  - https://gateway.ipfs.io/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/quick-start
