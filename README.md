@@ -72,7 +72,7 @@ ipfs bootstrap rm --all
 
 #### Start daemon
 ```
-ipfs daemon &> ipfs.log & echo $! > ipfs.pid
+ipfs daemon --enable-pubsub-experiment &> ipfs.log & echo $! > ipfs.pid
 ```
 
 #### ipfs.log example output
