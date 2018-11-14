@@ -42,12 +42,12 @@ go version go1.11 linux/amd64
 ```
 
 #### Install IPFS (go-ipfs)
-- Current Stable Version: `0.4.17`
-- Installing Version: `0.4`
+- Current Stable Version: `0.4.18`
+- Installing Version: `0.4.18`
 
 ```
-wget 'https://dist.ipfs.io/go-ipfs/v0.4.0/go-ipfs_v0.4.0_linux-amd64.tar.gz'
-tar -zxvf go-ipfs_v0.4.0_linux-amd64.tar.gz
+wget 'https://dist.ipfs.io/go-ipfs/v0.4.18/go-ipfs_v0.4.18_linux-amd64.tar.gz'
+tar -zxvf go-ipfs_v0.4.18_linux-amd64.tar.gz
 cd go-ipfs
 sudo ./install.sh
 cd ~
@@ -56,7 +56,7 @@ rm -rf go-ipfs*
 #### Verify version
 ```
 ipfs@ipfs-genesis:~$ ipfs version
-ipfs version 0.4.0
+ipfs version 0.4.18
 ```
 
 
