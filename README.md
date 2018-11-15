@@ -87,15 +87,17 @@ ipfs daemon --enable-pubsub-experiment &> ipfs.log & echo $! > ipfs.pid
 ```
 Initializing daemon...
 Successfully raised file descriptor limit to 2048.
+Swarm is limited to private network of peers with the swarm key
+Swarm key fingerprint: 61d4478554db8f3a30f1b5b9aea6c295
 Swarm listening on /ip4/127.0.0.1/tcp/4001
-Swarm listening on /ip4/172.31.22.109/tcp/4001
+Swarm listening on /ip4/172.31.23.17/tcp/4001
 Swarm listening on /ip6/::1/tcp/4001
-Swarm listening on /p2p-circuit/ipfs/QmP3nZKzhKjRWxn3AijEgTeEHyFFCs6iJobH7DQG5J2wD2
+Swarm listening on /p2p-circuit
 Swarm announcing /ip4/127.0.0.1/tcp/4001
-Swarm announcing /ip4/172.31.22.109/tcp/4001
+Swarm announcing /ip4/172.31.23.17/tcp/4001
 Swarm announcing /ip6/::1/tcp/4001
 API server listening on /ip4/127.0.0.1/tcp/5001
-Gateway (readonly) server listening on /ip4/0.0.0.0/tcp/8080
+Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8080
 Daemon is ready
 ```
 
