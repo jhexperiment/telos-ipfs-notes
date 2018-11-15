@@ -70,6 +70,7 @@ ipfs version 0.4.18
 cd ~
 ipfs init
 ipfs bootstrap rm --all
+ipfs bootstrap add /ip4/52.52.231.62/tcp/4001/ipfs/QmRV9pXD1G2WCK5hKVDDPfT2hsnBq7nGbQSyKpgBhayfdF
 ```
 
 #### Copy swarm key
@@ -112,6 +113,7 @@ ipfs pin rm QmS4ustL54uo8FzR9455qaxZwuMiUhyvMcX9Ba8nUH4uVv
 `COMING SOON`
 
 #### Resources
+ - https://github.com/ipfs/go-ipfs/blob/master/docs/experimental-features.md#private-networks
  - https://docs.ipfs.io/introduction/usage/
  - https://gateway.ipfs.io/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/quick-start
  - https://cluster.ipfs.io/guides/quickstart/
