@@ -74,7 +74,8 @@ ipfs bootstrap rm --all
 
 #### Copy swarm key
 ```
-cp swarm.key ~/.ipfs/swarm.key
+cd ~/.ipfs
+wget https://raw.githubusercontent.com/jhexperiment/telos-ipfs-notes/master/configs/ipfs/swarm.key
 ```
 
 #### Start daemon
