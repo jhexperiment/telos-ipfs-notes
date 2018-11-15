@@ -32,6 +32,8 @@ rm go1.11.linux-amd64.tar.gz
 ```
   export GOPATH=$HOME/.go
   export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+  # Force usage of private network
+  export LIBP2P_FORCE_PNET=1
 ```
 `source ~/.profile`
 
@@ -70,6 +72,11 @@ ipfs init
 ipfs bootstrap rm --all
 ```
 
+#### Copy swarm key
+```
+cp swarm.key ~/.ipfs/swarm.key
+```
+
 #### Start daemon
 ```
 ipfs daemon --enable-pubsub-experiment &> ipfs.log & echo $! > ipfs.pid
@@ -95,6 +102,7 @@ Daemon is ready
 ```
 ipfs pin rm QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG
 ipfs pin rm QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
+ipfs pin rm QmS4ustL54uo8FzR9455qaxZwuMiUhyvMcX9Ba8nUH4uVv
 ```
 
 #### Sync pin set
