@@ -70,7 +70,7 @@ ipfs version 0.4.18
 cd ~
 ipfs init
 ipfs bootstrap rm --all
-ipfs bootstrap add /ip4/52.52.231.62/tcp/4001/ipfs/QmRV9pXD1G2WCK5hKVDDPfT2hsnBq7nGbQSyKpgBhayfdF
+ipfs bootstrap add /ip4/52.52.231.62/tcp/4001/ipfs/QmbAMm6WXDVtapiv7H7kMcBVSv4CTdfgxoCtLj8dJYcd4M
 ```
 
 #### Copy swarm key
@@ -81,6 +81,7 @@ wget 'https://raw.githubusercontent.com/jhexperiment/telos-ipfs-notes/master/con
 
 #### Start daemon
 ```
+cd ~
 ipfs daemon --enable-pubsub-experiment &> ipfs.log & echo $! > ipfs.pid
 ```
 
