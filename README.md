@@ -103,15 +103,125 @@ Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8080
 Daemon is ready
 ```
 
-#### Clear IPFS pin set
+
+
+
+#### naxsi
 ```
-ipfs pin rm QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG
-ipfs pin rm QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn
-ipfs pin rm QmS4ustL54uo8FzR9455qaxZwuMiUhyvMcX9Ba8nUH4uVv
+sudo apt-get install build-essential libpcre3-dev libssl-dev zlib1g-dev -y
+wget http://nginx.org/download/nginx-1.15.7.tar.gz
+wget https://github.com/nbs-system/naxsi/archive/0.56.tar.gz -O naxsi-0.56.tar.gz
+tar xvzf nginx-1.15.7.tar.gz
+tar xvzf naxsi-0.56.tar.gz
+cd nginx-1.15.7/
+./configure --with-compat --conf-path=/etc/nginx/nginx.conf --add-dynamic-module=../naxsi-0.56/naxsi_src/ \
+ --error-log-path=/var/log/nginx/error.log --http-client-body-temp-path=/var/lib/nginx/body \
+ --http-fastcgi-temp-path=/var/lib/nginx/fastcgi --http-log-path=/var/log/nginx/access.log \
+ --http-proxy-temp-path=/var/lib/nginx/proxy --lock-path=/var/lock/nginx.lock \
+ --pid-path=/var/run/nginx.pid --with-http_ssl_module \
+ --without-mail_pop3_module --without-mail_smtp_module \
+ --without-mail_imap_module --without-http_uwsgi_module \
+ --without-http_scgi_module --prefix=/usr
+```
+Result:
+```
+  ...
+  nginx path prefix: "/usr"
+  nginx binary file: "/usr/sbin/nginx"
+  nginx modules path: "/usr/modules"
+  nginx configuration prefix: "/etc/nginx"
+  nginx configuration file: "/etc/nginx/nginx.conf"
+  nginx pid file: "/var/run/nginx.pid"
+  nginx error log file: "/var/log/nginx/error.log"
+  nginx http access log file: "/var/log/nginx/access.log"
+  nginx http client request body temporary files: "/var/lib/nginx/body"
+  nginx http proxy temporary files: "/var/lib/nginx/proxy"
+  nginx http fastcgi temporary files: "/var/lib/nginx/fastcgi"
+```
+```
+make modules
+sudo cp objs/ngx_http_naxsi_module.so /usr/modules/
+make
+sudo make install
+cd ~
+sudo cp naxsi-0.56/naxsi_config/naxsi_core.rules /etc/nginx/
+```
+#### nginx config
+```
+sudo vim /etc/nginx/nginx.conf
+```
+```
+load_module modules/ngx_http_naxsi_module.so;
+
+worker_processes  1;
+
+events {
+  worker_connections  1024;
+}
+
+http {
+  include /etc/nginx/naxsi_core.rules;
+  include /etc/nginx/ipfs.rules;
+
+  server {
+    listen 5001;
+    server_name localhost;
+    location / {
+      proxy_pass http://localhost:6001;
+      #Enable naxsi
+      SecRulesEnabled;
+      #Enable learning mode
+      #LearningMode;
+      #Define where blocked requests go
+      DeniedUrl "/50x.html";
+      #CheckRules, determining when naxsi needs to take action
+      CheckRule "$SQL >= 8" BLOCK;
+      CheckRule "$RFI >= 8" BLOCK;
+      CheckRule "$TRAVERSAL >= 4" BLOCK;
+      CheckRule "$EVADE >= 4" BLOCK;
+      CheckRule "$XSS >= 8" BLOCK;
+      CheckRule "$IPFS >= 4 BLOCK;
+      #naxsi logs goes there
+      error_log /var/log/naxsi.log;
+    }
+    error_page   500 502 503 504  /50x.html;
+    #This is where the blocked requests are going
+    location = /50x.html {
+      return 403;
+    }
+
+    location = /api/v0/add {
+      proxy_pass http://localhost:7001;
+    }
+  }
+}
+```
+```
+sudo vim /etc/nginx/ipfs.rules
 ```
 
-#### Sync pin set
-`COMING SOON`
+```
+sudo vim  /lib/systemd/system/nginx.service
+```
+```
+[Unit]
+Description=The NGINX HTTP and reverse proxy server
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+PIDFile=/run/nginx.pid
+ExecStartPre=/usr/sbin/nginx -t
+ExecStart=/usr/sbin/nginx
+ExecReload=/usr/sbin/nginx -s reload
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+```
+
+
 
 #### Resources
  - https://github.com/ipfs/go-ipfs/blob/master/docs/experimental-features.md#private-networks
