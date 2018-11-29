@@ -61,6 +61,17 @@ ipfs@ipfs-genesis:~$ ipfs version
 ipfs version 0.4.18
 ```
 
+#### Change port
+```
+vim ~/.ipfs/config
+```
+```
+{
+  "Addresses": {
+    "API": "/ip4/127.0.0.1/tcp/6001"
+  }
+}
+```
 
 #### Remove user sudo
 `sudo deluser ipfs sudo`
@@ -98,7 +109,7 @@ Swarm listening on /p2p-circuit
 Swarm announcing /ip4/127.0.0.1/tcp/4001
 Swarm announcing /ip4/172.31.23.17/tcp/4001
 Swarm announcing /ip6/::1/tcp/4001
-API server listening on /ip4/127.0.0.1/tcp/5001
+API server listening on /ip4/127.0.0.1/tcp/6001
 Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8080
 Daemon is ready
 ```
@@ -148,77 +159,9 @@ sudo cp naxsi-0.56/naxsi_config/naxsi_core.rules /etc/nginx/
 ```
 #### nginx config
 ```
-sudo vim /etc/nginx/nginx.conf
-```
-```
-load_module modules/ngx_http_naxsi_module.so;
-
-worker_processes  1;
-
-events {
-  worker_connections  1024;
-}
-
-http {
-  include /etc/nginx/naxsi_core.rules;
-  include /etc/nginx/ipfs.rules;
-
-  server {
-    listen 5001;
-    server_name localhost;
-    location / {
-      proxy_pass http://localhost:6001;
-      #Enable naxsi
-      SecRulesEnabled;
-      #Enable learning mode
-      #LearningMode;
-      #Define where blocked requests go
-      DeniedUrl "/50x.html";
-      #CheckRules, determining when naxsi needs to take action
-      CheckRule "$SQL >= 8" BLOCK;
-      CheckRule "$RFI >= 8" BLOCK;
-      CheckRule "$TRAVERSAL >= 4" BLOCK;
-      CheckRule "$EVADE >= 4" BLOCK;
-      CheckRule "$XSS >= 8" BLOCK;
-      CheckRule "$IPFS >= 4 BLOCK;
-      #naxsi logs goes there
-      error_log /var/log/naxsi.log;
-    }
-    error_page   500 502 503 504  /50x.html;
-    #This is where the blocked requests are going
-    location = /50x.html {
-      return 403;
-    }
-
-    location = /api/v0/add {
-      proxy_pass http://localhost:7001;
-    }
-  }
-}
-```
-```
-sudo vim /etc/nginx/ipfs.rules
-```
-
-```
-sudo vim  /lib/systemd/system/nginx.service
-```
-```
-[Unit]
-Description=The NGINX HTTP and reverse proxy server
-After=syslog.target network.target remote-fs.target nss-lookup.target
-
-[Service]
-Type=forking
-PIDFile=/run/nginx.pid
-ExecStartPre=/usr/sbin/nginx -t
-ExecStart=/usr/sbin/nginx
-ExecReload=/usr/sbin/nginx -s reload
-ExecStop=/bin/kill -s QUIT $MAINPID
-PrivateTmp=true
-
-[Install]
-WantedBy=multi-user.target
+sudo wget https://raw.githubusercontent.com/jhexperiment/telos-ipfs-notes/master/configs/nginx/nginx.conf -O /etc/nginx/nginx.conf
+sudo wget https://raw.githubusercontent.com/jhexperiment/telos-ipfs-notes/master/configs/naxsi/ipfs.rules -O /etc/nginx/ipfs.rules
+sudo wget https://raw.githubusercontent.com/jhexperiment/telos-ipfs-notes/master/configs/nginx/nginx.service -O /lib/systemd/system/nginx.service
 ```
 
 
