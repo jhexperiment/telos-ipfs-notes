@@ -18,6 +18,12 @@ sudo passwd ipfs
 su -l ipfs
 ```
 
+#### Install NodeJS
+```
+curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
+sudo apt install nodejs
+```
+
 #### Install GOLANG
 - Current Stable Version: `1.11.2`
 - Installing Version: `1.11`
@@ -183,3 +189,5 @@ sudo wget https://raw.githubusercontent.com/jhexperiment/telos-ipfs-notes/master
  - https://github.com/ipfs/js-ipfs-api
  - https://docs.ipfs.io/reference/api/http/
  - https://github.com/ipfs/go-ipfs/blob/master/docs/config.md
+ - https://github.com/nbs-system/naxsi
+ - https://medium.com/@mycoralhealth/learn-to-securely-share-files-on-the-blockchain-with-ipfs-219ee47df54c
